@@ -28,8 +28,7 @@ namespace TestMoneyveo
 
             // Act
             GoogleHomePage homePage = new GoogleHomePage(driver);
-            homePage.TypeText(textToSearch);
-            homePage.PressSearchButton();
+            homePage.SearchText(textToSearch);
             GoogleSearchPage searchPage = new GoogleSearchPage(driver);
             String actualResult = searchPage.GetTextFromResultN(resultNumber);
 

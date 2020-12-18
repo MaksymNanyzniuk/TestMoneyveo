@@ -12,24 +12,15 @@ namespace TestMoneyveo
         [CacheLookup]
         private IWebElement searchField;
 
-        [FindsBy(How = How.Name, Using = "btnK")]
-        [CacheLookup]
-        private IWebElement searchButton;
-
         public GoogleHomePage(IWebDriver driver)
         {
             this.driver = driver;
             PageFactory.InitElements(driver, this);
         }
 
-        public void TypeText(String s)
+        public void SearchText(String s)
         {
-            searchField.SendKeys(s);
-        }
-
-        public void PressSearchButton()
-        {
-            searchButton.Click();
+            searchField.SendKeys(s + Keys.Enter);
         }
     }
 }
