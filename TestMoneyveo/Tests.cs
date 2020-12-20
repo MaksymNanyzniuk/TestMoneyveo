@@ -40,7 +40,7 @@ namespace TestMoneyveo
         [TearDown]
         public void CloseBrowser()
         {
-            driver.Close();
+            driver.Quit();
         }
     }
 }
