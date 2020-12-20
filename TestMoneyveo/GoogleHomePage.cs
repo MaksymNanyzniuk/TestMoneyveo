@@ -4,23 +4,15 @@ using System;
 
 namespace TestMoneyveo
 {
-    class GoogleHomePage
+    class GoogleHomePage : Page
     {
-        private IWebDriver driver;
-
-        [FindsBy(How = How.Name, Using = "q")]
-        [CacheLookup]
-        private IWebElement searchField;
-
-        public GoogleHomePage(IWebDriver driver)
+        public GoogleHomePage(IWebDriver driver) : base (driver)
         {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
         }
 
-        public void SearchText(String s)
+        public void SearchText (string s)
         {
-            searchField.SendKeys(s + Keys.Enter);
+            Fill("q", Locator.Name, s + Keys.Enter);
         }
     }
 }

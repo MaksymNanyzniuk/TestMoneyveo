@@ -6,22 +6,17 @@ using System;
 
 namespace TestMoneyveo
 {
-    class GoogleSearchPage
+    class GoogleSearchPage : Page
     {
-        private IWebDriver driver;
-        private WebDriverWait wait;
-
-        public GoogleSearchPage(IWebDriver driver)
+        public GoogleSearchPage(IWebDriver driver, TimeSpan defaultTimeSpan) : base (driver, defaultTimeSpan)
         {
-            this.driver = driver;
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            PageFactory.InitElements(driver, this);
         }
 
         public String GetTextFromResultN(int n)
         {
-            IWebElement element = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@id='rso']/div[@class='g'][" + n + "]")));
-            return element.Text;
+            String xPath = "//div[@id='rso']/div[starts-with(@class,'g')][" + n + "]";
+            IWebElement webElement = Find(xPath, Locator.XPath);
+            return webElement.Text;
         }
     }
 }

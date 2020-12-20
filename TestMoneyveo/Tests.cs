@@ -2,7 +2,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
-
+using System.Diagnostics;
 
 namespace TestMoneyveo
 {
@@ -29,11 +29,11 @@ namespace TestMoneyveo
             // Act
             GoogleHomePage homePage = new GoogleHomePage(driver);
             homePage.SearchText(textToSearch);
-            GoogleSearchPage searchPage = new GoogleSearchPage(driver);
+            GoogleSearchPage searchPage = new GoogleSearchPage(driver, TimeSpan.FromSeconds(10));
             String actualResult = searchPage.GetTextFromResultN(resultNumber);
 
             //Assert
-           // Debug.WriteLine("---------------Result:" + actualResult);
+            Debug.WriteLine("---------------Result:" + actualResult);
             Assert.IsTrue(actualResult.Contains(expectedResult));
         }
 
